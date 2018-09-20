@@ -13,7 +13,6 @@
   h5 {
     display: block;
     margin: $-s 0 0 0;
-    border-left: 5px solid $color-page;
     padding: $-xs 0 $-xs $-m;
     font-size: 1.1em;
     font-weight: normal;
@@ -30,21 +29,11 @@
   .page, .chapter, .book {
     padding-left: $-l;
   }
-  .page {
-    border-left: 5px solid $color-page;
-  }
   .page.draft {
-    border-left: 5px solid $color-page-draft;
     .text-page {
       color: $color-page-draft;
       fill: $color-page-draft;
     }
-  }
-  .chapter {
-    border-left: 5px solid $color-chapter;
-  }
-  .book {
-    border-left: 5px solid $color-book;
   }
   .meta {
     margin-top: -$-m;
