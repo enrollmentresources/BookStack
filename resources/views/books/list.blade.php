@@ -4,7 +4,7 @@
 @else
     <div class="container">
 @endif
-    <h1>{{ trans('entities.books') }}</h1>
+<h1></h1>
     @if(count($books) > 0)
         @if($booksViewType === 'list')
             @foreach($books as $book)
