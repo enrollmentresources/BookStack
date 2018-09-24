@@ -43,6 +43,9 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <strong>MagicLink: </strong> <input type='text' value='{{$magicLink}}' />
+                            </div>
                         </div>
                     </div>
                     <div class="form-group text-right">
