@@ -1,4 +1,4 @@
-@extends('sidebar-layout')
+@extends('clean-layout')
 
 @section('toolbar')
     <div class="col-sm-6 faded">
@@ -7,10 +7,6 @@
             @include('books/view-toggle', ['booksViewType' => $booksViewType])
         </div>
     </div>
-@stop
-
-@section('sidebar')
-    @include('common/home-sidebar')
 @stop
 
 @section('body')

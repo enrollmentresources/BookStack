@@ -1,4 +1,4 @@
-@extends('sidebar-layout')
+@extends('clean-layout')
 
 @section('toolbar')
     <div class="col-sm-6 col-xs-1  faded">

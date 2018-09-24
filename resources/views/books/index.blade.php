@@ -16,13 +16,6 @@
 @stop
 
 @section('sidebar')
-    @if($recents)
-        <div id="recents" class="card">
-            <h3>@icon('view') {{ trans('entities.recently_viewed') }}</h3>
-            @include('partials/entity-list', ['entities' => $recents, 'style' => 'compact'])
-        </div>
-    @endif
-
     <div id="popular" class="card">
         <h3>@icon('popular') {{ trans('entities.books_popular') }}</h3>
         @if(count($popular) > 0)

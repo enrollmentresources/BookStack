@@ -13,7 +13,6 @@
   h5 {
     display: block;
     margin: $-s 0 0 0;
-    border-left: 5px solid $color-page;
     padding: $-xs 0 $-xs $-m;
     font-size: 1.1em;
     font-weight: normal;
@@ -30,21 +29,11 @@
   .page, .chapter, .book {
     padding-left: $-l;
   }
-  .page {
-    border-left: 5px solid $color-page;
-  }
   .page.draft {
-    border-left: 5px solid $color-page-draft;
     .text-page {
       color: $color-page-draft;
       fill: $color-page-draft;
     }
-  }
-  .chapter {
-    border-left: 5px solid $color-chapter;
-  }
-  .book {
-    border-left: 5px solid $color-book;
   }
   .meta {
     margin-top: -$-m;
@@ -109,7 +98,7 @@
   list-style: none;
   margin: $-xs 0 0;
   padding-left: 0;
-  border-left: 5px solid $color-book;
+  //border-left: 2px solid $color-book;
   li a {
     display: block;
     border-bottom: none;
@@ -158,17 +147,17 @@
     padding-left: $-s;
   }
   .list-item-chapter {
-    border-left: 5px solid $color-chapter;
+    //border-left: 2px solid $color-chapter;
     margin: 10px 10px;
     display: block;
   }
   .list-item-page {
     border-bottom: none;
-    border-left: 5px solid $color-page;
+    //border-left: 2px solid $color-page;
     margin: 10px 10px;
   }
   .list-item-page.draft {
-    border-left: 5px solid $color-page-draft;
+    //border-left: 2px solid $color-page-draft;
   }
   .page.draft .page, .list-item-page.draft a.page {
     color: $color-page-draft !important;

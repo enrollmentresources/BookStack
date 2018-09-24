@@ -20,9 +20,8 @@
     </div>
 
 
-    @if(!isset($hidePages) && count($chapter->pages) > 0)
-        <p chapter-toggle class="text-muted">@icon('caret-right') @icon('page') <span>{{ trans_choice('entities.x_pages', $chapter->pages->count()) }}</span></p>
-        <div class="inset-list">
+    @if(count($chapter->pages) > 0)
+        <div>
             @foreach($chapter->pages as $page)
                 <h5 class="@if($page->draft) draft @endif"><a href="{{ $page->getUrl() }}" class="text-page @if($page->draft) draft @endif">@icon('page'){{$page->name}}</a></h5>
             @endforeach
