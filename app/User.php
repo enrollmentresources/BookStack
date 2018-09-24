@@ -7,10 +7,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
+use Cesargb\MagicLink\Traits\HasMagicLink;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, Notifiable;
+    use Authenticatable, CanResetPassword, Notifiable, HasMagicLink;
 
     /**
      * The database table used by the model.
