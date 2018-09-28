@@ -1,7 +1,7 @@
 <?php namespace Entity;
 
 
-use BookStack\Page;
+use BookStack\Entities\Page;
 use Tests\TestCase;
 
 class PageRevisionTest extends TestCase
@@ -59,5 +59,35 @@ class PageRevisionTest extends TestCase
         $page = Page::find($page->id);
         $afterRevisionCount = $page->revisions->count();
         $this->assertTrue($beforeRevisionCount === $afterRevisionCount);
+    }
+
+    public function test_revision_limit_enforced()
+    {
+        config()->set('app.revision_limit', 2);
+        $page = Page::first();
+        $this->asEditor()->put($page->getUrl(), ['name' => 'Updated page', 'html' => 'new page html', 'summary' => 'Update a']);
+        $page = Page::find($page->id);
+        $this->asEditor()->put($page->getUrl(), ['name' => 'Updated page', 'html' => 'new page html', 'summary' => 'Update a']);
+        for ($i = 0; $i < 10; $i++) {
+            $this->asEditor()->put($page->getUrl(), ['name' => 'Updated page', 'html' => 'new page html', 'summary' => 'Update a']);
+        }
+
+        $revisionCount = $page->revisions()->count();
+        $this->assertEquals(2, $revisionCount);
+    }
+
+    public function test_false_revision_limit_allows_many_revisions()
+    {
+        config()->set('app.revision_limit', false);
+        $page = Page::first();
+        $this->asEditor()->put($page->getUrl(), ['name' => 'Updated page', 'html' => 'new page html', 'summary' => 'Update a']);
+        $page = Page::find($page->id);
+        $this->asEditor()->put($page->getUrl(), ['name' => 'Updated page', 'html' => 'new page html', 'summary' => 'Update a']);
+        for ($i = 0; $i < 10; $i++) {
+            $this->asEditor()->put($page->getUrl(), ['name' => 'Updated page', 'html' => 'new page html', 'summary' => 'Update a']);
+        }
+
+        $revisionCount = $page->revisions()->count();
+        $this->assertEquals(12, $revisionCount);
     }
 }
