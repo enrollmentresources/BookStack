@@ -59,6 +59,7 @@
                             </form>
                         </div>
                         <div class="links text-center">
+                            <a href="http://help.enrollmentresources.com/support" target="_blank">@icon('help')Contact Us</a>
                             <a href="{{ baseUrl('/books') }}">@icon('book'){{ trans('entities.books') }}</a>
                             @if(signedInUser() && userCan('settings-manage'))
                                 <a href="{{ baseUrl('/settings') }}">@icon('settings'){{ trans('settings.settings') }}</a>
