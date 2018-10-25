@@ -35,7 +35,7 @@ class ApiController extends Controller
 			]);
 		}
 
-		$recentlyUpdatedPages = $this->entityRepo->getRecentlyUpdated('page', 12);
+		$recentlyUpdatedPages = $this->entityRepo->getRecentlyUpdated('page', 8);
 		$books = $this->entityRepo->getAll('book');
 
 		foreach($recentlyUpdatedPages as $page) {
