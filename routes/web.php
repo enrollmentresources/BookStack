@@ -218,4 +218,7 @@ Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
+// API Routes
+Route::get('/api/{apikey}/latest', 'ApiController@latestPages');
+
 Route::fallback('HomeController@getNotFound');
