@@ -26,15 +26,34 @@ class ApiController extends Controller
      */
     public function latestPages($apikey)
     {
+		$latest = array();
 		$apikeyConfig = env('API_KEY', '');
+
 		if(!$apikeyConfig || $apikeyConfig != $apikey) {
 			return response()->json([
 				'name' => 'error'
 			]);
 		}
 
-        $recentlyUpdatedPages = $this->entityRepo->getRecentlyUpdated('page', 12);
-        return response()->json($recentlyUpdatedPages);
+		$recentlyUpdatedPages = $this->entityRepo->getRecentlyUpdated('page', 12);
+		$books = $this->entityRepo->getAll('book');
+
+		foreach($recentlyUpdatedPages as $page) {
+			$pageInfo = array(
+				'name' => $page->name,
+				'slug' => $page->slug,
+				'updated_at' => $page->updated_at
+			);
+
+			foreach($books as $book) {
+				if($book->id == $page->book_id) {
+					$pageInfo['book_slug'] = $book->slug;
+				}
+			}
+			array_push($latest, $pageInfo);
+		}
+
+        return response()->json($latest);
     }
 
 }
