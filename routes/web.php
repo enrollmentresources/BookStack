@@ -3,6 +3,17 @@
 Route::get('/translations', 'HomeController@getTranslations');
 Route::get('/robots.txt', 'HomeController@getRobots');
 
+// Allow magic link to work with page link
+Route::any('/books/{bookSlug}/page/{pageSlug}/magiclink/{token}', function ($bookSlug, $pageSlug, $token) {
+    $MagicLink = new \Cesargb\MagicLink\MagicLink();
+    $result = $MagicLink->auth($token);
+    if ($result == false) {
+        return redirect($result);
+    } else {
+        return redirect('/books/'.$bookSlug.'/page/'.$pageSlug);
+    }
+});
+
 // Authenticated routes...
 Route::group(['middleware' => 'auth'], function () {
 
@@ -55,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{bookSlug}/draft/{pageId}', 'PageController@editDraft');
         Route::post('/{bookSlug}/draft/{pageId}', 'PageController@store');
         Route::get('/{bookSlug}/page/{pageSlug}', 'PageController@show');
+
         Route::get('/{bookSlug}/page/{pageSlug}/export/pdf', 'PageController@exportPdf');
         Route::get('/{bookSlug}/page/{pageSlug}/export/html', 'PageController@exportHtml');
         Route::get('/{bookSlug}/page/{pageSlug}/export/plaintext', 'PageController@exportPlainText');
